@@ -6,29 +6,26 @@ class our_app:
     def __init__(self, root):
         self.root = root
         self.root.title("Aplikasi TKinter Seadanya")
-        self.root.geometry("1000x1000")
-        self.root.resizable(True,True)
+        self.root.geometry("1200x650")
+        self.root.resizable(False,False)
         self.font = ("Courier New", 24, "bold")
         self.button_font = ("Cooper Black", 14)
-        image = Image.open("bg.png").resize((700, 400))
+        image = Image.open("bg.png").resize((1200, 650))
         self.photo = ImageTk.PhotoImage(image)
-        image1 = Image.open("perkenalan.png").resize((700, 400))
+        image1 = Image.open("perkenalan.png").resize((1200, 650))
         self.photo1 = ImageTk.PhotoImage(image1)
         self.bg_label = tk.Label(self.root, image=self.photo)
         self.bg_label.place(x=0, y=0, relwidth=1, relheight=1)
-
      
         tk.Label(self.root, text="UAP SDA KEL 5", font=self.font, bg="#000000", fg="white").place(relx=0.5, y=40, anchor="n")
-        tk.Button(self.root, text="Start", width=15, font=self.button_font, command=self.Start_perkenalan).place(relx=0.5, rely=0.5, anchor="center")
-        tk.Button(self.root, text="Exit", width=10, font=self.button_font, command=self.exit_root).place(relx=0.5, rely=0.5, y=60, anchor="center")
+        tk.Button(self.root, text="Start", width=15, font=self.button_font, bg="blue", fg="white", bd=10, relief="ridge", padx=10, pady=5, highlightthickness=0, command=self.Start_perkenalan).place(relx=0.5, rely=0.5, anchor="center")
+        tk.Button(self.root, text="Exit", width=10, font=self.button_font, bg="red", fg="white", bd=10, relief="ridge", padx=10, pady=5, highlightthickness=0, command=root.quit).place(relx=0.5, rely=0.5, y=90, anchor="center")
 
-
-     def Start_perkenalan(self):
+    def Start_perkenalan(self):
         self.root.withdraw()
-
         perkenalan_root = tk.Toplevel()
         perkenalan_root.title("Perkenalan")
-        perkenalan_root.geometry("700x400")
+        perkenalan_root.geometry("1220x650")
         bg_label = tk.Label(perkenalan_root, image=self.photo1)
         bg_label.image = self.photo1
         bg_label.place(x=0, y=0)
@@ -39,12 +36,12 @@ class our_app:
             perkenalan_root.destroy()
             self.CRUD_root()
 
-        tk.Button(perkenalan_root, text="Program Inti", width=10, font=self.button_font, command=start_program).pack(pady=10)
+        tk.Button(perkenalan_root, text="Program Inti", width=10, font=self.button_font, bg="blue", fg="white", bd=10, relief="ridge", padx=10, pady=5, highlightthickness=0, command=start_program).pack(pady=10)
 
     def CRUD_root(self):
         crud_window = tk.Toplevel()
         crud_window.title("Program inti")
-        crud_window.geometry("700x400")
+        crud_window.geometry("1200x650")
         bg_label = tk.Label(crud_window, image=self.photo1)
         bg_label.image = self.photo1
         bg_label.place(x=0, y=0)
