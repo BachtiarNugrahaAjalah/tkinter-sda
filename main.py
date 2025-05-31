@@ -5,15 +5,21 @@ from PIL import Image, ImageTk
 class our_app:
     def __init__(self, root):
         self.root = root
-        self.root.title("Aplikasi TKinter Seadanya")
+        self.root.title("Aplikasi TKinter Kelompok 5 (keknya)")
         self.root.geometry("1200x650")
         self.root.resizable(False,False)
-        self.font = ("Courier New", 24, "bold")
+
+        #font
+        self.font = ("Monserrat", 24, "bold")
         self.button_font = ("Cooper Black", 14)
+
+        #image
         image = Image.open("bg.png").resize((1200, 650))
         self.photo = ImageTk.PhotoImage(image)
         image1 = Image.open("perkenalan.png").resize((1200, 650))
         self.photo1 = ImageTk.PhotoImage(image1)
+
+        #background
         self.bg_label = tk.Label(self.root, image=self.photo)
         self.bg_label.place(x=0, y=0, relwidth=1, relheight=1)
      
@@ -50,9 +56,3 @@ class our_app:
 
     def exit_root(self):
         self.root.destroy()
-
-
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = our_app(root)
-    root.mainloop()
