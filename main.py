@@ -25,7 +25,12 @@ class our_app:
      
         tk.Label(self.root, text="UAP SDA KEL 5", font=self.font, bg="#000000", fg="white").place(relx=0.5, y=40, anchor="n")
         tk.Button(self.root, text="Start", width=15, font=self.button_font, bg="blue", fg="white", bd=10, relief="ridge", padx=10, pady=5, highlightthickness=0, command=self.Start_perkenalan).place(relx=0.5, rely=0.5, anchor="center")
-        tk.Button(self.root, text="Exit", width=10, font=self.button_font, bg="red", fg="white", bd=10, relief="ridge", padx=10, pady=5, highlightthickness=0, command=root.quit).place(relx=0.5, rely=0.5, y=90, anchor="center")
+        tk.Button(self.root, text="Exit", width=10, font=self.button_font, bg="red", fg="white", bd=10, relief="ridge", padx=10, pady=5, highlightthickness=0, command=self.ask_exit).place(relx=0.5, rely=0.5, y=90, anchor="center")
+
+    def ask_exit(self):
+        Keluar = messagebox.askyesno("Keluar", "Apakah kamu yakin ingin keluar?")
+        if Keluar:
+            self.root.destroy()
 
     def Start_perkenalan(self):
         self.root.withdraw()
@@ -53,6 +58,7 @@ class our_app:
         bg_label.place(x=0, y=0)
 
         tk.Label(crud_window, text="CRUD", font=self.font, fg="white", bg="#1a1a2e").place(relx=0.5, rely=0.5, anchor="center")
+        tk.Button(crud_window, text="Keluar", width=10, font=self.button_font, bg="red", fg="white", padx=10, pady=5, command=exit).place(relx=0.5, rely=0.5, y = 100, anchor="center")
 
     def exit_root(self):
         self.root.destroy()
