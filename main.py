@@ -7,7 +7,7 @@ class our_app:
         self.root = root
         self.root.title("Aplikasi TKinter Kelompok 5 (keknya)")
         self.x = (root.winfo_screenwidth() - 1280) // 2
-        self.y = (root.winfo_screenheight() - 720) // 2
+        self.y = (root.winfo_screenheight() - 770) // 2
         self.root.geometry(f"1280x720+{self.x}+{self.y}")
         self.root.resizable(False,False)
 
@@ -16,9 +16,9 @@ class our_app:
         self.button_font = ("Pixelify sans", 14, "bold")
 
         #image
-        image = Image.open("bg.png").resize((1280, 720))
+        image = Image.open("pictures/bg.png").resize((1280, 720))
         self.photo = ImageTk.PhotoImage(image)
-        image1 = Image.open("perkenalan.png").resize((1280, 720))
+        image1 = Image.open("pictures/perkenalan.png").resize((1280, 720))
         self.photo1 = ImageTk.PhotoImage(image1)
 
         #background
