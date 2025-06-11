@@ -12,8 +12,8 @@ class our_app:
         self.root.resizable(False,False)
 
         #font
-        self.font = ("Monserrat", 24, "bold")
-        self.button_font = ("Monserrat", 14, "bold")
+        self.font = ("Beekman Square", 24, "bold")
+        self.button_font = ("Pixelify sans", 14, "bold")
 
         #image
         image = Image.open("bg.png").resize((1280, 720))
@@ -28,7 +28,7 @@ class our_app:
         tk.Label(self.root, text="UAP SDA KEL 5", font=self.font, bg="#000000", fg="white").place(relx=0.5, y=40, anchor="n")
         tk.Button(self.root, text="Anggota", width=10, font=self.button_font, bg="yellow", fg="black", bd=5, relief="ridge", padx=10, pady=5, highlightthickness=0, command=self.Start_perkenalan).place(relx=0.5, rely=0.5, x = -240, anchor="center")
         tk.Button(self.root, text="Start", width=10, font=self.button_font, bg="blue", fg="white", bd=5, relief="ridge", padx=10, pady=5, highlightthickness=0, command=self.CRUD_root).place(relx=0.5, rely=0.5, anchor="center")
-        tk.Button(self.root, text="Exit", width=10, font=self.button_font, bg="red", fg="white", bd=5, relief="ridge", padx=10, pady=5, highlightthickness=0, command=self.ask_exit).place(relx=0.5, rely=0.5, x = 240, anchor="center")
+        tk.Button(self.root, text="Keluar", width=10, font=self.button_font, bg="red", fg="white", bd=5, relief="ridge", padx=10, pady=5, highlightthickness=0, command=self.ask_exit).place(relx=0.5, rely=0.5, x = 240, anchor="center")
 
         
     def ask_exit(self):
@@ -45,8 +45,8 @@ class our_app:
         return kmbl
     
     def buat_button_back(self, now, back):
-        back_button = self.bttn_back(now, back)
-        back_button.pack(pady=0.5)
+        self.back_button = self.bttn_back(now, back)
+        self.back_button
 
     def Start_perkenalan(self):
         self.root.withdraw()
