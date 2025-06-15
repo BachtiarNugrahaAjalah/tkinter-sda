@@ -8,7 +8,7 @@ Anggota:
 
 ## 📖 Penjelasan Proyek
 
-Aplikasi ini dirancang sebagai media pembelajaran dasar pemrograman GUI dengan Python. Fokus utama dari aplikasi ini adalah sistem pengelolaan data (CRUD), namun juga dilengkapi dengan **menu navigasi awal**, seperti:
+Aplikasi ini dirancang sebagai media pembelajaran dasar pemrograman GUI dengan Python. Fokus utama dari aplikasi ini adalah sistem pengelolaan data (CRUD) dan juga VS(skor pertandingan), namun juga dilengkapi dengan **menu navigasi awal**, seperti:
 
 ### 🧭 Struktur Navigasi:
 
@@ -17,6 +17,7 @@ Aplikasi ini dirancang sebagai media pembelajaran dasar pemrograman GUI dengan P
    - **Introduction**: Berisi Para member kelompok 5 dan di next nya ada cripto.
    - **About**: Menampilkan informasi tentang pembuat dan latar belakang aplikasi.
    - **CRUD System**: Masuk ke fitur utama untuk mengelola data.
+   - **VS Project**: Masuk ke fitur VS skor sistem
 
 2. **CRUD System**  
    Di bagian ini, pengguna dapat:
