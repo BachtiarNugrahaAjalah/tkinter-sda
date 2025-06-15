@@ -10,7 +10,7 @@ Anggota:
 
 - Tampilan welcome, introduction dan main project
 - sistem main project menggunakan CRUD
-- menggunakan font press to p
+- Font yang diinstall `beekman square` `pixelify sans` dan `Press Start 2P`
 - Desain layout fleksibel
 - Menyimpan data ke file csv
 - Menggunakan Application Programming Interface(API)
