@@ -115,10 +115,10 @@ class versus_app():
         self.red_score_buttons_frame.config(bg="red") 
         self.red_score_buttons_frame.place(anchor="center", x = 150, y = 300) 
 
-        self.label_timer_kiri = tk.Label(self.frame_kiri, text=f"3:00", font=("Beekman Square", 92), fg="white", bg="dark blue")
+        self.label_timer_kiri = tk.Label(self.frame_kiri, text=f"0:00", font=("Beekman Square", 92), fg="white", bg="dark blue")
         self.label_timer_kiri.place(anchor="center", x=350, y=500)
         
-        self.label_timer_kanan = tk.Label(self.frame_kanan, text=f"3:00", font=("Beekman Square", 92), fg="white", bg="dark red")
+        self.label_timer_kanan = tk.Label(self.frame_kanan, text=f"0:00", font=("Beekman Square", 92), fg="white", bg="dark red")
         self.label_timer_kanan.place(anchor="center", x=350, y=500)
         
         # button
