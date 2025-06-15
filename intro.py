@@ -4,24 +4,22 @@ from PIL import Image, ImageTk
 class Introduction:
     def __init__(self, root):
         self.root = root
-        self.root.geometry('1280x720')
-        self.root.title("yaya")
 
         # Background
-        bg_image = Image.open('D:/SEMESTER 2/UAP PY/BgIntro.png')
+        bg_image = Image.open('BgIntro.png')
         self.background_photo = ImageTk.PhotoImage(bg_image)
 
         # Card Photo
-        self.fiki = ImageTk.PhotoImage(Image.open('D:/SEMESTER 2/UAP PY/CardFiki.png').resize((140, 140)))
-        self.Bachtiar = ImageTk.PhotoImage(Image.open('D:/SEMESTER 2/UAP PY/CardBach.png').resize((140, 140)))
-        self.Riki = ImageTk.PhotoImage(Image.open('D:/SEMESTER 2/UAP PY/CardRiki.png').resize((140, 140)))
-        self.Raffa = ImageTk.PhotoImage(Image.open('D:/SEMESTER 2/UAP PY/CardRaffa.png').resize((140, 140)))
+        self.fiki = ImageTk.PhotoImage(Image.open('CardFiki.png').resize((140, 140)))
+        self.Bachtiar = ImageTk.PhotoImage(Image.open('CardBach.png').resize((140, 140)))
+        self.Riki = ImageTk.PhotoImage(Image.open('CardRiki.png').resize((140, 140)))
+        self.Raffa = ImageTk.PhotoImage(Image.open('CardRaffa.png').resize((140, 140)))
 
         # Stage Photo
-        self.stageFiki = ImageTk.PhotoImage(Image.open('D:/SEMESTER 2/UAP PY/Fiki.png').resize((490,490)))
-        self.stageBach = ImageTk.PhotoImage(Image.open('D:/SEMESTER 2/UAP PY/Bachtiar.png').resize((500,500)))
-        self.stageRiki = ImageTk.PhotoImage(Image.open('D:/SEMESTER 2/UAP PY/Riki.png').resize((390,390)))
-        self.stageRaffa = ImageTk.PhotoImage(Image.open('D:/SEMESTER 2/UAP PY/Raffa.png').resize((490,490)))
+        self.stageFiki = ImageTk.PhotoImage(Image.open('Fiki.png').resize((490,490)))
+        self.stageBach = ImageTk.PhotoImage(Image.open('Bachtiar.png').resize((500,500)))
+        self.stageRiki = ImageTk.PhotoImage(Image.open('Riki.png').resize((390,390)))
+        self.stageRaffa = ImageTk.PhotoImage(Image.open('Raffa.png').resize((490,490)))
 
         # Canvas Setup
         self.mycanvas = Canvas(self.root, width=1280, height=720)
