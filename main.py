@@ -8,7 +8,6 @@ import requests
 File_CSV = 'data_kripto.csv'
 foto_koin = []
 
-
 def load_data():
     data = []
     try:
@@ -20,7 +19,6 @@ def load_data():
         pass
     return data
 
-
 def save_data(data):
     with open(File_CSV, 'w', newline='') as file:
         fieldnames = ['id', 'nama']
@@ -28,7 +26,6 @@ def save_data(data):
         writer.writeheader()
         for row in data:
             writer.writerow(row)
-
 
 def get_crypto(ids):
     if not ids:
@@ -44,68 +41,25 @@ def get_crypto(ids):
     except:
         return []
 
-
-class our_app:
+class CryptoCRUDApp:
     def __init__(self, root):
         self.root = root
-        self.root.title("Aplikasi TKinter Kelompok 5 (keknya)")
-        self.x = (root.winfo_screenwidth() - 1280) // 2
-        self.y = (root.winfo_screenheight() - 770) // 2
-        self.root.geometry(f"1280x720+{self.x}+{self.y}")
+        self.root.title("Aplikasi Data Kripto")
+        self.root.geometry("1280x720")
         self.root.resizable(False, False)
         self.data_kripto = load_data()
 
-        #font
-        self.font = ("Beekman Square", 24, "bold")
-        self.button_font = ("Pixelify sans", 14, "bold")
+        self.main_frame = tk.Frame(self.root)
+        self.main_frame.pack(fill="both", expand=True)
 
-        #image
-        image = Image.open("pictures/bg.png").resize((1280, 720))
-        self.photo = ImageTk.PhotoImage(image)
-        image1 = Image.open("pictures/perkenalan.png").resize((1280, 720))
-        self.photo1 = ImageTk.PhotoImage(image1)
+        self.build_ui()
 
-        #background
-        self.bg_label = tk.Label(self.root, image=self.photo)
-        self.bg_label.place(x=0, y=0, relwidth=1, relheight=1)
+    def build_ui(self):
+        for widget in self.main_frame.winfo_children():
+            widget.destroy()
 
-        tk.Label(self.root, text="UAP SDA KEL 5", font=self.font, bg="#000000", fg="white").place(relx=0.5, y=40, anchor="n")
-        tk.Button(self.root, text="Anggota", width=10, font=self.button_font, bg="yellow", fg="black", bd=5, relief="ridge", command=self.Start_perkenalan).place(relx=0.5, rely=0.5, x=-240, anchor="center")
-        tk.Button(self.root, text="Start", width=10, font=self.button_font, bg="blue", fg="white", bd=5, relief="ridge", command=self.CRUD_root).place(relx=0.5, rely=0.5, anchor="center")
-        tk.Button(self.root, text="Keluar", width=10, font=self.button_font, bg="red", fg="white", bd=5, relief="ridge", command=self.ask_exit).place(relx=0.5, rely=0.5, x=240, anchor="center")
-
-    def ask_exit(self):
-        if messagebox.askyesno("Keluar", "Apakah kamu yakin ingin keluar?"):
-            self.root.destroy()
-
-    def back_home(self, now, back):
-        now.destroy()
-        back.deiconify()
-
-    def buat_button_back(self, now, back):
-        tk.Button(now, text="Kembali", font=self.button_font, bg="red", fg="white", bd=5, command=lambda: self.back_home(now, back)).place(relx=0.5, rely=0.5, x=550, y=320, anchor="center")
-
-    def Start_perkenalan(self):
-        self.root.withdraw()
-        perkenalan_root = tk.Toplevel()
-        perkenalan_root.title("Perkenalan")
-        perkenalan_root.geometry(f"1280x720+{self.x}+{self.y}")
-        perkenalan_root.resizable(False, False)
-        bg_label = tk.Label(perkenalan_root, image=self.photo1)
-        bg_label.image = self.photo1
-        bg_label.place(x=0, y=0)
-        tk.Label(perkenalan_root, text="Foto Perkenalan", font=self.font, fg="white", bg="#1a1a2e").pack(pady=80)
-        self.buat_button_back(perkenalan_root, self.root)
-
-    def CRUD_root(self):
-        self.root.withdraw()
-        crud_window = tk.Toplevel()
-        crud_window.title("Program Inti")
-        crud_window.geometry(f"1280x720+{self.x}+{self.y}")
-        crud_window.resizable(False, False)
-
-        tk.Label(crud_window, text="ID CoinGecko(API) (Contoh: bitcoin, ethereum, dll):").pack()
-        entry_id = tk.Entry(crud_window)
+        tk.Label(self.main_frame, text="ID CoinGecko(API) (Contoh: bitcoin, ethereum, dll):").pack()
+        entry_id = tk.Entry(self.main_frame)
         entry_id.pack()
 
         def tambah_data():
@@ -118,20 +72,18 @@ class our_app:
             name = info[0]['name']
             self.data_kripto.append({'id': coin_id, 'nama': name})
             save_data(self.data_kripto)
-            crud_window.destroy()
-            self.CRUD_root()
+            self.build_ui()
 
         def hapus_terakhir():
             if self.data_kripto:
                 self.data_kripto.pop()
                 save_data(self.data_kripto)
-                crud_window.destroy()
-                self.CRUD_root()
+                self.build_ui()
 
-        tk.Button(crud_window, text="Tambah Koin", command=tambah_data).pack(pady=5)
-        tk.Button(crud_window, text="Hapus Terakhir", command=hapus_terakhir).pack()
+        tk.Button(self.main_frame, text="Tambah Koin", command=tambah_data).pack(pady=5)
+        tk.Button(self.main_frame, text="Hapus Terakhir", command=hapus_terakhir).pack()
 
-        canvas_frame = tk.Frame(crud_window)
+        canvas_frame = tk.Frame(self.main_frame)
         canvas_frame.pack(fill="both", expand=True)
 
         scrollbar = tk.Scrollbar(canvas_frame)
@@ -159,7 +111,7 @@ class our_app:
             market = market_map.get(coin['id'])
             if market:
                 image_url = market['image']
-                nama = f"{market['name']} ({market['symbol'].upper()})"
+                nama = f"{coin['nama']} ({market['symbol'].upper()})"
                 harga = f"${market['current_price']:,.2f}"
                 perubahan = market['price_change_percentage_24h']
                 warna = "green" if perubahan >= 0 else "red"
@@ -190,14 +142,10 @@ class our_app:
             teks.pack(side="left", padx=10)
             teks.bind("<Button-1>", lambda e, idx=i: self.edit_data(idx))
 
-        self.buat_button_back(crud_window, self.root)
-
     def edit_data(self, index):
         coin = self.data_kripto[index]
         nama_baru = simpledialog.askstring("Edit Nama", "Nama baru:", initialvalue=coin['nama'])
         if nama_baru:
             self.data_kripto[index]['nama'] = nama_baru
             save_data(self.data_kripto)
-            self.CRUD_root()
-
-
+            self.build_ui()
