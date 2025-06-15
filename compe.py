@@ -831,7 +831,7 @@ Losser Team: {daftar_losser[2 + int(self.match)*3]}\nLosser Name: {daftar_nama_l
         self.selection_division.config(state="normal")
         self.round = 0
         self.match += 1
-        root.quit()
+        self.root.quit()
             
     def red_shikkaku(self):
         messagebox.showinfo("Menang", f"Team {self.red_team_name} menang karena\nTeam {self.blue_team_name} menyerah")
@@ -860,7 +860,7 @@ Losser Team: {daftar_losser[2 + int(self.match)*3]}\nLosser Name: {daftar_nama_l
         self.selection_division.config(state="normal")
         self.round = 0
         self.match += 1
-        root.quit()
+        self.root.quit()
 
     def status_stopwatch_on_button(self):
         self.status_stopwatch = not self.status_stopwatch
