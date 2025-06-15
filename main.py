@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox, simpledialog
+from tkinter import ttk, messagebox, simpledialog, Button
 from PIL import Image, ImageTk
 import csv
 from io import BytesIO
@@ -82,6 +82,7 @@ class CryptoCRUDApp:
 
         tk.Button(self.main_frame, text="Tambah Koin", command=tambah_data).pack(pady=5)
         tk.Button(self.main_frame, text="Hapus Terakhir", command=hapus_terakhir).pack()
+        tk.Button(self.main_frame, text="Next")
 
         canvas_frame = tk.Frame(self.main_frame)
         canvas_frame.pack(fill="both", expand=True)
@@ -149,6 +150,14 @@ class CryptoCRUDApp:
             self.data_kripto[index]['nama'] = nama_baru
             save_data(self.data_kripto)
             self.build_ui()
+    
+    def button(self):
+        self.btn_next = Button(self.root, text="NEXT", font=('Arial', 12, 'bold'), bg='purple', command=self.load_main)
+        self.btn_next.place(x=1150, y=650)
+        
+        self.btn_back = Button(self.root, text="BACK", font=('Arial', 12, 'bold'), bg='purple')
+        self.btn_back.place(x=50, y=650)
+
             
 # root = tk.Tk()
 # app = CryptoCRUDApp(root)
