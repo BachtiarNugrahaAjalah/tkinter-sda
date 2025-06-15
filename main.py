@@ -149,3 +149,7 @@ class CryptoCRUDApp:
             self.data_kripto[index]['nama'] = nama_baru
             save_data(self.data_kripto)
             self.build_ui()
+            
+root = tk.Tk()
+app = CryptoCRUDApp(root)
+root.mainloop()

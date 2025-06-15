@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from PIL import Image, ImageTk
+from intro import Introduction
 
 class Welcome:
     def __init__(self, root):
@@ -11,14 +12,18 @@ class Welcome:
 
         self.load_assets()
         self.setup_ui()
+    
+    def load_intro(self):
+        self.root.withdraw()
+        Introduction(self.root)
 
     def load_assets(self):
         # Load background
-        bg_image_raw = Image.open("Bgp.jpg").resize((1280, 720))
+        bg_image_raw = Image.open("Background/Bgp.png").resize((1280, 720))
         self.bg_photo = ImageTk.PhotoImage(bg_image_raw)
 
         # Load ghost icon (placeholder)
-        ghost_image_raw = Image.open("Bgp.jpg").resize((50, 50))
+        ghost_image_raw = Image.open("Background/Bgp.png").resize((50, 50))
         self.ghost_photo = ImageTk.PhotoImage(ghost_image_raw)
 
     def setup_ui(self):
@@ -27,7 +32,7 @@ class Welcome:
         bg_label.place(x=0, y=0, relwidth=1, relheight=1)
 
         # Outline frame
-        self.background = tk.PhotoImage(file="latar.png")
+        self.background = tk.PhotoImage(file="BackgroundElement/latar.png")
         self.outline_frame = tk.Frame(self.root, width=810, height=410, bg="black", highlightbackground="white", highlightthickness=2)
         self.label = tk.Label(self.outline_frame, image=self.background, borderwidth=0, highlightthickness=0)
         self.label.place(x=0, y=0, width=self.background.width(), height=self.background.height())
@@ -57,7 +62,7 @@ class Welcome:
         progress_bar['value'] = 60  # 60%
 
     def add_buttons(self):
-        play_btn = tk.Button(self.outline_frame, text="START", width=12, height=1, bg="#e74c3c", fg="white", activebackground="#c0392b")
+        play_btn = tk.Button(self.outline_frame, text="START", width=12, height=1, bg="#e74c3c", fg="white", activebackground="#c0392b", command=self.load_intro)
         play_btn.place(relx=0.25, y=340, anchor="center")
 
         menu_btn = tk.Button(self.outline_frame, text="ABOUT", width=12, height=1, bg="#f1c40f", fg="black", activebackground="#f39c12")
@@ -65,3 +70,7 @@ class Welcome:
 
         exit_btn = tk.Button(self.outline_frame, text="EXIT", width=12, height=1, bg="#3498db", fg="white", activebackground="#2980b9", command=self.root.destroy)
         exit_btn.place(relx=0.75, y=340, anchor="center")
+
+root = tk.Tk()
+app = Welcome(root)
+root.mainloop()

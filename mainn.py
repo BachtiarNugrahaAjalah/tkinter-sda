@@ -1,6 +1,8 @@
 import tkinter as tk
-from main import our_app
+from main import CryptoCRUDApp
+from welcomepage import Welcome
+from intro import Introduction
 
-root = tk.Tk()
-app = our_app(root)
-root.mainloop()
+# root = tk.Tk()
+# app = CryptoCRUDApp(root)
+# root.mainloop()

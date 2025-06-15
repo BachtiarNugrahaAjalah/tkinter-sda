@@ -1,25 +1,29 @@
 from tkinter import Tk, Canvas, Button
 from PIL import Image, ImageTk
+import tkinter as tk
 
 class Introduction:
     def __init__(self, root):
         self.root = root
-
+        self.root.geometry("1280x720")
+        self.root.title("PROJECT AKHIR SEMESTER")
+        self.root.resizable(False, False)
+        
         # Background
-        bg_image = Image.open('BgIntro.png')
+        bg_image = Image.open('Background/BgIntro.png')
         self.background_photo = ImageTk.PhotoImage(bg_image)
 
         # Card Photo
-        self.fiki = ImageTk.PhotoImage(Image.open('CardFiki.png').resize((140, 140)))
-        self.Bachtiar = ImageTk.PhotoImage(Image.open('CardBach.png').resize((140, 140)))
-        self.Riki = ImageTk.PhotoImage(Image.open('CardRiki.png').resize((140, 140)))
-        self.Raffa = ImageTk.PhotoImage(Image.open('CardRaffa.png').resize((140, 140)))
+        self.fiki = ImageTk.PhotoImage(Image.open('Foto/CardFiki.png').resize((140, 140)))
+        self.Bachtiar = ImageTk.PhotoImage(Image.open('Foto/CardBach.png').resize((140, 140)))
+        self.Riki = ImageTk.PhotoImage(Image.open('Foto/CardRiki.png').resize((140, 140)))
+        self.Raffa = ImageTk.PhotoImage(Image.open('Foto/CardRaffa.png').resize((140, 140)))
 
         # Stage Photo
-        self.stageFiki = ImageTk.PhotoImage(Image.open('Fiki.png').resize((490,490)))
-        self.stageBach = ImageTk.PhotoImage(Image.open('Bachtiar.png').resize((500,500)))
-        self.stageRiki = ImageTk.PhotoImage(Image.open('Riki.png').resize((390,390)))
-        self.stageRaffa = ImageTk.PhotoImage(Image.open('Raffa.png').resize((490,490)))
+        self.stageFiki = ImageTk.PhotoImage(Image.open('Foto/Fiki.png').resize((490,490)))
+        self.stageBach = ImageTk.PhotoImage(Image.open('Foto/Bachtiar.png').resize((500,500)))
+        self.stageRiki = ImageTk.PhotoImage(Image.open('Foto/Riki.png').resize((390,390)))
+        self.stageRaffa = ImageTk.PhotoImage(Image.open('Foto/Raffa.png').resize((490,490)))
 
         # Canvas Setup
         self.mycanvas = Canvas(self.root, width=1280, height=720)
@@ -64,3 +68,7 @@ class Introduction:
     def stageRA(self, e):
         self.mycanvas.itemconfig(self.stage_awal, image=self.stageRaffa)
         self.mycanvas.coords(self.stage_awal, 650, 435)
+        
+root = tk.Tk()
+app = Introduction(root)
+root.mainloop()
