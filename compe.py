@@ -115,10 +115,10 @@ class versus_app():
         self.red_score_buttons_frame.config(bg="red") 
         self.red_score_buttons_frame.place(anchor="center", x = 150, y = 300) 
 
-        self.label_timer_kiri = tk.Label(self.frame_kiri, text=f"0:00", font=("Beekman Square", 92), fg="white", bg="dark blue")
+        self.label_timer_kiri = tk.Label(self.frame_kiri, text=f"3:00", font=("Beekman Square", 92), fg="white", bg="dark blue")
         self.label_timer_kiri.place(anchor="center", x=350, y=500)
         
-        self.label_timer_kanan = tk.Label(self.frame_kanan, text=f"0:00", font=("Beekman Square", 92), fg="white", bg="dark red")
+        self.label_timer_kanan = tk.Label(self.frame_kanan, text=f"3:00", font=("Beekman Square", 92), fg="white", bg="dark red")
         self.label_timer_kanan.place(anchor="center", x=350, y=500)
         
         # button
@@ -300,6 +300,7 @@ class versus_app():
         self.timer_button.config(text="Start")
         self.red_score = 0
         self.blue_score = 0
+        self.total = 0
         self.label_red_score.config(text="0")
         self.label_blue_score.config(text="0")
         self.blue_score_buttons_frame.place(anchor="center", x = 150, y = 300)
@@ -730,9 +731,9 @@ Losser Team: {daftar_losser[2 + int(self.match)*3]}\nLosser Name: {daftar_nama_l
                 canvas.pack()
                 canvas.create_image(0, 0, image=self.photo, anchor="nw")
                 canvas.create_text(426, 50, text=title_result_text, fill="white", font=("Beekman Square", 16, "bold"))
-                canvas.create_text(126, 240, text=paragraph_winner_round1, fill="white", font=("Beekman Square", 16, "bold"))
-                canvas.create_text(426, 240, text=paragraph_winner_round2, fill="white", font=("Beekman Square", 16, "bold"))
-                canvas.create_text(726, 240, text=paragraph_winner_round3, fill="white", font=("Beekman Square", 16, "bold"))
+                canvas.create_text(156, 240, text=paragraph_winner_round1, fill="white", font=("Beekman Square", 16, "bold"))
+                canvas.create_text(456, 240, text=paragraph_winner_round2, fill="white", font=("Beekman Square", 16, "bold"))
+                canvas.create_text(756, 240, text=paragraph_winner_round3, fill="white", font=("Beekman Square", 16, "bold"))
 
             text_in_result()
 
@@ -881,6 +882,6 @@ Losser Team: {daftar_losser[2 + int(self.match)*3]}\nLosser Name: {daftar_nama_l
             writer = csv.writer(file)
             writer.writerow(header)
  
-# root = tk.Tk()
-# vers = versus_app(root)
-# root.mainloop()
+root = tk.Tk()
+vers = versus_app(root)
+root.mainloop()
