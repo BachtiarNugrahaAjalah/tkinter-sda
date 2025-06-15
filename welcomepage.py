@@ -71,4 +71,3 @@ class Welcome:
 
         exit_btn = tk.Button(self.outline_frame, text="EXIT", width=12, height=1, bg="#3498db", fg="white", activebackground="#2980b9", command=self.root.destroy)
         exit_btn.place(relx=0.75, y=340, anchor="center")
-

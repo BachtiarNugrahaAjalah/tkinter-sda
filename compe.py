@@ -881,6 +881,6 @@ Losser Team: {daftar_losser[2 + int(self.match)*3]}\nLosser Name: {daftar_nama_l
             writer = csv.writer(file)
             writer.writerow(header)
  
-root = tk.Tk()
-vers = versus_app(root)
-root.mainloop()
+# root = tk.Tk()
+# vers = versus_app(root)
+# root.mainloop()

@@ -150,6 +150,6 @@ class CryptoCRUDApp:
             save_data(self.data_kripto)
             self.build_ui()
             
-root = tk.Tk()
-app = CryptoCRUDApp(root)
-root.mainloop()
+# root = tk.Tk()
+# app = CryptoCRUDApp(root)
+# root.mainloop()
