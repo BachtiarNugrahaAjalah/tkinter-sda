@@ -1,6 +1,7 @@
 from tkinter import Tk, Canvas, Button
 from PIL import Image, ImageTk
 import tkinter as tk
+from main import CryptoCRUDApp
 
 class Introduction:
     def __init__(self, root):
@@ -46,11 +47,16 @@ class Introduction:
         self.mycanvas.tag_bind(self.Rappa, '<Button-1>', self.stageRA)
 
         # Buttons
-        self.btn_next = Button(self.root, text="NEXT", font=('Arial', 12, 'bold'), bg='purple')
+        self.btn_next = Button(self.root, text="NEXT", font=('Arial', 12, 'bold'), bg='purple', command=self.load_main)
         self.btn_next.place(x=1150, y=650)
         
         self.btn_back = Button(self.root, text="BACK", font=('Arial', 12, 'bold'), bg='purple')
         self.btn_back.place(x=50, y=650)
+
+    def load_main(self):
+        for widget in self.root.winfo_children():
+            widget.destroy()
+        CryptoCRUDApp(self.root)
 
     # Stage Switching
     def stageKI(self, e):
@@ -68,7 +74,3 @@ class Introduction:
     def stageRA(self, e):
         self.mycanvas.itemconfig(self.stage_awal, image=self.stageRaffa)
         self.mycanvas.coords(self.stage_awal, 650, 435)
-        
-root = tk.Tk()
-app = Introduction(root)
-root.mainloop()
