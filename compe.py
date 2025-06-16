@@ -14,17 +14,11 @@ class versus_app():
 
         self.font = ("Beekman Square", 24, "bold")
         self.button_font = ("Pixelify sans", 14, "bold")
-
+        
         self.ao_team = []
         self.aka_team = []
 
-        with open("dataBase/daftar_tim.csv", "r", newline="") as file:
-            reader = csv.reader(file)
-            header = next(reader)
-            for row in reader:
-                self.ao_team.append(row[0])
-                self.aka_team.append(row[1])
-        
+        self.isi_team()
         self.red_team_name = "Aka"
         self.blue_team_name = "Ao"
         self.divisionn = ["Championship", "Exhibition"]
@@ -203,6 +197,17 @@ class versus_app():
 
         self.status_player_blue = "Clear"
         self.status_player_red = "Clear"
+    
+    def isi_team(self):
+        
+        self.ao_team = []
+        self.aka_team = []
+        with open("dataBase/daftar_tim.csv", "r", newline="") as file:
+            reader = csv.reader(file)
+            header = next(reader)
+            for row in reader:
+                self.ao_team.append(row[0])
+                self.aka_team.append(row[1])
         
     def reset(self):
         self.team_selection_aka.config(foreground="gray")
@@ -288,6 +293,32 @@ class versus_app():
         if value == "Enter Blue Team Name" or value == "Enter Red Team Name":
             return True
         return len(value) <= 14
+    
+    def reset_tampilan(self):
+        self.ao_label.config(text="Ao")
+        self.aka_label.config(text="Aka")
+        self.red_team_name = "Aka"
+        self.blue_team_name = "Ao"
+        self.isi_team()
+        self.ao_name_entry.insert(0, "Enter Blue Team Name")
+        # self.ao_name_entry.delete(0, tk.END)
+        self.ao_name_entry.config(fg="gray")
+        self.ao_name_entry.config(state="normal")
+        # self.aka_name_entry.delete(0, tk.END)
+        self.aka_name_entry.insert(0, "Enter Red Team Name")
+        self.aka_name_entry.config(fg="gray")
+        self.team_selection_aka['values'] = self.aka_team.copy()
+        self.team_selection_ao['values'] = self.ao_team.copy()
+        self.team_selection_aka.set(f"Pilih team {self.red_team_name}")
+        self.team_selection_aka.config(foreground="gray")
+        self.team_selection_ao.set(f"Pilih team {self.blue_team_name}")
+        self.team_selection_ao.config(foreground="gray")
+        self.aka_name_entry.config(state="normal")
+        self.selection_division.set("Division")
+        self.selection_division.config(foreground="gray")
+        self.selection_division.config(state="readonly")
+        self.round = 0
+        self.match += 1
         
     def reset_timer(self):
         self.running = False
@@ -689,6 +720,7 @@ class versus_app():
                 result.destroy()
                 self.reset_timer()
                 self.reset()
+                self.reset_tampilan()
 
             def text_in_result():
                 daftar_winner = []
@@ -737,29 +769,6 @@ Losser Team: {daftar_losser[2 + int(self.match)*3]}\nLosser Name: {daftar_nama_l
 
             text_in_result()
 
-            self.team_selection_aka['values'] = self.aka_team.copy()
-            self.team_selection_ao['values'] = self.ao_team.copy()
-            self.team_selection_aka.set(f"Pilih team {self.red_team_name}")
-            self.team_selection_aka.config(foreground="gray")
-            self.team_selection_ao.set(f"Pilih team {self.blue_team_name}")
-            self.team_selection_ao.config(foreground="gray")
-            self.ao_name_entry.delete(0, tk.END)
-            self.ao_name_entry.insert(0, "Enter Blue Team Name")
-            self.ao_name_entry.config(fg="gray")
-            self.ao_name_entry.config(state="normal")
-            self.aka_name_entry.delete(0, tk.END)
-            self.aka_name_entry.insert(0, "Enter Red Team Name")
-            self.aka_name_entry.config(fg="gray")
-            self.aka_name_entry.config(state="normal")
-            self.ao_label.config(text="Ao")
-            self.aka_label.config(text="Aka")
-            self.red_team_name = "Aka"
-            self.blue_team_name = "Ao"
-            self.selection_division.set("Division")
-            self.selection_division.config(foreground="gray")
-            self.selection_division.config(state="normal")
-            self.round = 0
-            self.match += 1
             tk.Button(result, text="OK", font=("Beekman Square", 12, "bold"), fg="white", bg="red", command=ok_button_on_result).place(anchor="center", relx=0.5, rely=0.8, x=290, y=45)
 
     def tambah_blue(self):
@@ -808,59 +817,13 @@ Losser Team: {daftar_losser[2 + int(self.match)*3]}\nLosser Name: {daftar_nama_l
         messagebox.showinfo("Menang", f"Team {self.red_team_name} menang karena\nTeam {self.blue_team_name} menyerah")
         self.reset()
         self.reset_timer()
-        self.ao_name_entry.delete(0, tk.END)
-        self.ao_name_entry.insert(0, "Enter Blue Team Name")
-        self.ao_name_entry.config(fg="gray")
-        self.ao_name_entry.config(state="normal")
-        self.aka_name_entry.delete(0, tk.END)
-        self.aka_name_entry.insert(0, "Enter Red Team Name")
-        self.aka_name_entry.config(fg="gray")
-        self.aka_name_entry.config(state="normal")
-        self.team_selection_aka['values'] = self.aka_team.copy()
-        self.team_selection_ao['values'] = self.ao_team.copy()
-        self.team_selection_aka.set(f"Pilih team {self.red_team_name}")
-        self.team_selection_aka.config(foreground="gray")
-        self.team_selection_ao.set(f"Pilih team {self.blue_team_name}")
-        self.team_selection_ao.config(foreground="gray")
-        self.ao_label.config(text="Ao")
-        self.aka_label.config(text="Aka")
-        self.red_team_name = "Aka"
-        self.blue_team_name = "Ao"
-        self.selection_division.set("Division")
-        self.selection_division.config(foreground="gray")
-        self.selection_division.config(state="normal")
-        self.round = 0
-        self.match += 1
-        self.root.quit()
+        self.reset_tampilan()
             
     def red_shikkaku(self):
         messagebox.showinfo("Menang", f"Team {self.red_team_name} menang karena\nTeam {self.blue_team_name} menyerah")
         self.reset()
         self.reset_timer()
-        self.team_selection_aka['values'] = self.aka_team.copy()
-        self.team_selection_ao['values'] = self.ao_team.copy()
-        self.team_selection_aka.set(f"Pilih team {self.red_team_name}")
-        self.team_selection_aka.config(foreground="gray")
-        self.team_selection_ao.set(f"Pilih team {self.blue_team_name}")
-        self.team_selection_ao.config(foreground="gray")
-        self.ao_name_entry.delete(0, tk.END)
-        self.ao_name_entry.insert(0, "Enter Blue Team Name")
-        self.ao_name_entry.config(fg="gray")
-        self.ao_name_entry.config(state="normal")
-        self.aka_name_entry.delete(0, tk.END)
-        self.aka_name_entry.insert(0, "Enter Red Team Name")
-        self.aka_name_entry.config(fg="gray")
-        self.aka_name_entry.config(state="normal")
-        self.ao_label.config(text="Ao")
-        self.aka_label.config(text="Aka")
-        self.red_team_name = "Aka"
-        self.blue_team_name = "Ao"
-        self.selection_division.set("Division")
-        self.selection_division.config(foreground="gray")
-        self.selection_division.config(state="normal")
-        self.round = 0
-        self.match += 1
-        self.root.quit()
+        self.reset_tampilan()
 
     def status_stopwatch_on_button(self):
         self.status_stopwatch = not self.status_stopwatch
@@ -874,7 +837,7 @@ Losser Team: {daftar_losser[2 + int(self.match)*3]}\nLosser Name: {daftar_nama_l
             self.timer_button.place_forget()
 
     def execute(self):
-        self.root.quit()
+        self.root.destroy()
         with open("dataBase/hasil_pertandingan.csv", newline="") as file:
                 reader = csv.reader(file)
                 header = next(reader)
